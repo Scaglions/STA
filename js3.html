@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aforismi di Scienziati java script</title>
+  <style>
+    .aforisma {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: magenta;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aforismi degli scienziati</h1>
+
+  <div class="aforisma">
+    <p id="aforismaA"> “Lo scienziato nel suo laboratorio non è solo un tecnico, è anche un bambino davanti a fenomeni della Natura che lo affascinano come un racconto di fate.” </p>
+    <button onclick="nascondiTesto('aforismaA')">Nascondi Aforisma</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforismaB"> “Qualsiasi marmocchio può uccidere una pulce: tutti gli studiosi delle accademie del mondo non sono in grado di crearne una.” </p>
+    <button onclick="nascondiTesto('aforismaB')">Nascondi Aforisma</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforismaC">“Gli scienziati sognano di fare grandi cose. Gli ingegneri le realizzano.” </p>
+    <button onclick="nascondiTesto('aforismaC')">Nascondi Aforisma</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforismaD"> “Le leggi della scienza dovrebbero essere le stesse per tutti gli osservatori che si muovono liberamente, a prescindere dalla loro velocità.” </p>
+    <button onclick="nascondiTesto('aforismaD')">Nascondi Aforisma</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforismaE"> “I medici senza clienti si chiamano scienziati.” </p>
+    <button onclick="nascondiTesto('aforismaE')">Nascondi Aforisma</button>
+  </div>
+
+  <script>
+    function nascondiTesto(id) {
+      const testo = document.getElementById(id);
+      testo.style.display = "none"; 
+    }
+  </script>
+</body>
+</html>
