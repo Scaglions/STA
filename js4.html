@@ -6,17 +6,17 @@
     <title>Calcolo Dislivello Trekking</title>
     <script>
         function calcolaDislivello() {
-            // Recupero i valori dei campi di input
+         
             let partenza = parseFloat(document.getElementById("partenza").value);
             let pausa = parseFloat(document.getElementById("pausa").value);
             let arrivo = parseFloat(document.getElementById("arrivo").value);
 
             // Calcolo il dislivello totale
-            let dislivello = Math.abs(arrivo - partenza); // Dislivello tra partenza e arrivo
-            let dislivelloPausa = Math.abs(pausa - partenza); // Dislivello tra partenza e pausa
-            let dislivelloTotale = dislivello + dislivelloPausa; // Somma del dislivello
+            let dislivello = Math.abs(arrivo - partenza); 
+            let dislivelloPausa = Math.abs(pausa - partenza);
+            let dislivelloTotale = dislivello + dislivelloPausa; 
 
-            // Scrivo i dati nella pagina
+          
             document.getElementById("risultati").innerHTML = `
                 <h3>Dati del Trekking:</h3>
                 <p>Punto di partenza: ${partenza} m</p>
