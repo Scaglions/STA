@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Dislivello Trekking</title>
+    <script>
+        function calcolaDislivello() {
+            // Recupero i valori dei campi di input
+            let partenza = parseFloat(document.getElementById("partenza").value);
+            let pausa = parseFloat(document.getElementById("pausa").value);
+            let arrivo = parseFloat(document.getElementById("arrivo").value);
+
+            // Calcolo il dislivello totale
+            let dislivello = Math.abs(arrivo - partenza); // Dislivello tra partenza e arrivo
+            let dislivelloPausa = Math.abs(pausa - partenza); // Dislivello tra partenza e pausa
+            let dislivelloTotale = dislivello + dislivelloPausa; // Somma del dislivello
+
+            // Scrivo i dati nella pagina
+            document.getElementById("risultati").innerHTML = `
+                <h3>Dati del Trekking:</h3>
+                <p>Punto di partenza: ${partenza} m</p>
+                <p>Punto di pausa: ${pausa} m</p>
+                <p>Punto di arrivo: ${arrivo} m</p>
+                <p><strong>Dislivello totale:</strong> ${dislivelloTotale} m</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calcolo del Dislivello per Trekking</h1>
+    <form onsubmit="event.preventDefault(); calcolaDislivello();">
+        <label for="partenza">Altezza punto di partenza (in metri):</label><br>
+        <input type="number" id="partenza" required><br><br>
+
+        <label for="pausa">Altezza punto di pausa (in metri):</label><br>
+        <input type="number" id="pausa"><br><br>
+
+        <label for="arrivo">Altezza punto di arrivo (in metri):</label><br>
+        <input type="number" id="arrivo" required><br><br>
+
+        <button type="submit">Calcola Dislivello</button>
+    </form>
+
+    <div id="risultati"></div>
+</body>
+</html>
