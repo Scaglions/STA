@@ -4,37 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcolo Dislivello Trekking</title>
-    <script>
-        function calcolaDislivello() {
-         
-            let partenza = parseFloat(document.getElementById("partenza").value);
-            let pausa = parseFloat(document.getElementById("pausa").value);
-            let arrivo = parseFloat(document.getElementById("arrivo").value);
+    
 
-          
-            let dislivello = Math.abs(arrivo - partenza); 
-            let dislivelloPausa = Math.abs(pausa - partenza);
-            let dislivelloTotale = dislivello + dislivelloPausa; 
-
-          
-            document.getElementById("risultati").innerHTML = `
-                <h3>Dati del Trekking:</h3>
-                <p>Punto di partenza: ${partenza} m</p>
-                <p>Punto di pausa: ${pausa} m</p>
-                <p>Punto di arrivo: ${arrivo} m</p>
-                <p><strong>Dislivello totale:</strong> ${dislivelloTotale} m</p>;
-                }
-        const dislivello = Math.abs(partenza - pausa) + abs(pausa - arrivo);
-
-        document.getElementById("dislivello").InnerText = "Il dislivello totale è:" + dislivello + "metri.";
-    </script>
+    
 </head>
 <body>
     <style>
 
-        {
-  background-image: url("Montagna.jpeg");
-}
+ 
     </style>
    
     <h1>Calcolo del Dislivello per Trekking</h1>
@@ -52,5 +29,28 @@
     </form>
 
     <div id="risultati"></div>
+
+
+    <script>
+        function calcolaDislivello() {
+         
+            let partenza = parseFloat(document.getElementById("partenza").value);
+            let pausa = parseFloat(document.getElementById("pausa").value);
+            let arrivo = parseFloat(document.getElementById("arrivo").value);
+
+          
+            let dislivello = Math.abs(arrivo - partenza); 
+            let dislivelloPausa = Math.abs(pausa - partenza);
+            let dislivelloTotale = dislivello + dislivelloPausa; 
+
+          
+            document.getElementById("risultati").innerHTML = "dislivello="+  dislivelloTotale ;
+                
+                }
+             
+        const dislivello = Math.abs(partenza - pausa) + Math.abs(pausa - arrivo);
+
+        document.getElementById("dislivello").InnerText = "Il dislivello totale è:" + dislivello + "metri.";
+    </script>
 </body>
 </html>
