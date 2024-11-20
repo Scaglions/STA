@@ -22,9 +22,11 @@
                 <p>Punto di partenza: ${partenza} m</p>
                 <p>Punto di pausa: ${pausa} m</p>
                 <p>Punto di arrivo: ${arrivo} m</p>
-                <p><strong>Dislivello totale:</strong> ${dislivelloTotale} m</p>
-            `;
-        }
+                <p><strong>Dislivello totale:</strong> ${dislivelloTotale} m</p>;
+                }
+        const dislivello = Math.abs(partenza - pausa) + abs(pausa - arrivo);
+
+        document.getElementById("dislivello").InnerText = "Il dislivello totale è:" + dislivello + "metri.";
     </script>
 </head>
 <body>
