@@ -51,28 +51,16 @@
             top: 10px;
             left: 10px;
         }
-
-        #gameOver {
-            color: white;
-            font-size: 48px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none; /* Inizialmente non visibile */
-        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
     <div id="score">Punteggio: 0</div>
-    <div id="gameOver">Game Over</div>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreDisplay = document.getElementById('score');
-        const gameOverDisplay = document.getElementById('gameOver');
         
         // Impostazioni del canvas
         canvas.width = window.innerWidth;
@@ -101,7 +89,6 @@
         let bullets = [];
         let enemies = [];
         let score = 0;
-        let gameOver = false; // Flag per determinare se il gioco è finito
 
         // Funzione per disegnare il giocatore
         function drawPlayer() {
@@ -127,7 +114,6 @@
 
         // Funzione per muovere il giocatore
         function movePlayer() {
-            if (gameOver) return; // Se il gioco è finito, non muovere il giocatore
             player.x += player.dx;
             player.y += player.dy;
             
@@ -164,20 +150,6 @@
             });
         }
 
-        // Funzione per verificare le collisioni tra il giocatore e i nemici
-        function checkPlayerCollision() {
-            enemies.forEach(enemy => {
-                if (player.x < enemy.x + enemy.width &&
-                    player.x + player.width > enemy.x &&
-                    player.y < enemy.y + enemy.height &&
-                    player.y + player.height > enemy.y) {
-                    // Se il giocatore è colpito, termina il gioco
-                    gameOver = true;
-                    showGameOver();
-                }
-            });
-        }
-
         // Funzione per gestire le collisioni tra proiettili e nemici
         function checkCollisions() {
             bullets.forEach(bullet => {
@@ -206,7 +178,6 @@
 
         // Funzione per generare nemici
         function spawnEnemy() {
-            if (gameOver) return; // Non generare nemici se il gioco è finito
             const enemy = {
                 x: Math.random() * (canvas.width - 50),
                 y: -50, // parte sopra lo schermo
@@ -220,24 +191,17 @@
 
         // Funzione per disegnare tutto
         function gameLoop() {
-            if (gameOver) return; // Interrompi il ciclo se il gioco è finito
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Pulisce il canvas
-            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Disegna lo sfondo
+            // Disegnare lo sfondo
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             
             movePlayer();
             moveBullets();
             moveEnemies();
-            checkPlayerCollision(); // Verifica se il giocatore è colpito
-            checkCollisions(); // Verifica le collisioni tra proiettili e nemici
+            checkCollisions();
             drawPlayer();
             drawBullets();
             drawEnemies();
             requestAnimationFrame(gameLoop);
-        }
-
-        // Funzione per mostrare il Game Over
-        function showGameOver() {
-            gameOverDisplay.style.display = 'block'; // Mostra il messaggio Game Over
         }
 
         // Gestione dei tasti per il movimento del giocatore
@@ -256,7 +220,6 @@
 
         // Funzione per sparare i proiettili
         function shootBullet() {
-            if (gameOver) return; // Non sparare se il gioco è finito
             let bullet = {
                 x: player.x + player.width / 2 - 5,
                 y: player.y,
