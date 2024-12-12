@@ -1,11 +1,3 @@
-
-Per aggiungere i nemici al nostro gioco e fare in modo che possano interagire con il giocatore, dobbiamo implementare alcune nuove caratteristiche. Ad esempio, dobbiamo generare dei nemici che si muovano sullo schermo e che possano essere colpiti dai proiettili sparati dal giocatore.
-
-Ecco il codice aggiornato con i nemici aggiunti:
-
-Codice aggiornato:
-html
-Copia codice
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -50,14 +42,24 @@ Copia codice
             background-color: blue;
             border-radius: 50%;
         }
+
+        #score {
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
+    <div id="score">Punteggio: 0</div>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        const scoreDisplay = document.getElementById('score');
         
         // Impostazioni del canvas
         canvas.width = window.innerWidth;
@@ -77,6 +79,7 @@ Copia codice
 
         let bullets = [];
         let enemies = [];
+        let score = 0;
 
         // Funzione per disegnare il giocatore
         function drawPlayer() {
@@ -150,9 +153,18 @@ Copia codice
                         // Rimuovi il proiettile e il nemico se c'è una collisione
                         bullets = bullets.filter(b => b !== bullet);
                         enemies = enemies.filter(e => e !== enemy);
+                        
+                        // Incrementa il punteggio
+                        score += 10;
+                        updateScore();
                     }
                 });
             });
+        }
+
+        // Funzione per aggiornare il punteggio sullo schermo
+        function updateScore() {
+            scoreDisplay.textContent = `Punteggio: ${score}`;
         }
 
         // Funzione per generare nemici
