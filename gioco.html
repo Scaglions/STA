@@ -1,3 +1,11 @@
+
+Per aggiungere i nemici al nostro gioco e fare in modo che possano interagire con il giocatore, dobbiamo implementare alcune nuove caratteristiche. Ad esempio, dobbiamo generare dei nemici che si muovano sullo schermo e che possano essere colpiti dai proiettili sparati dal giocatore.
+
+Ecco il codice aggiornato con i nemici aggiunti:
+
+Codice aggiornato:
+html
+Copia codice
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -34,6 +42,14 @@
             background-color: yellow;
             border-radius: 50%;
         }
+
+        .enemy {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: blue;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +76,7 @@
         };
 
         let bullets = [];
+        let enemies = [];
 
         // Funzione per disegnare il giocatore
         function drawPlayer() {
@@ -72,6 +89,14 @@
             bullets.forEach(bullet => {
                 ctx.fillStyle = bullet.color;
                 ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+        }
+
+        // Funzione per disegnare i nemici
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                ctx.fillStyle = enemy.color;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
             });
         }
 
@@ -100,13 +125,59 @@
             });
         }
 
+        // Funzione per muovere i nemici
+        function moveEnemies() {
+            enemies.forEach(enemy => {
+                // Movimento semplice dei nemici verso il basso
+                enemy.y += enemy.speed;
+                
+                // Se il nemico esce dallo schermo, lo rimuoviamo
+                if (enemy.y > canvas.height) {
+                    enemies = enemies.filter(e => e !== enemy);
+                }
+            });
+        }
+
+        // Funzione per gestire le collisioni tra proiettili e nemici
+        function checkCollisions() {
+            bullets.forEach(bullet => {
+                enemies.forEach(enemy => {
+                    if (bullet.x < enemy.x + enemy.width &&
+                        bullet.x + bullet.width > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + bullet.height > enemy.y) {
+                        
+                        // Rimuovi il proiettile e il nemico se c'è una collisione
+                        bullets = bullets.filter(b => b !== bullet);
+                        enemies = enemies.filter(e => e !== enemy);
+                    }
+                });
+            });
+        }
+
+        // Funzione per generare nemici
+        function spawnEnemy() {
+            const enemy = {
+                x: Math.random() * (canvas.width - 50),
+                y: -50, // parte sopra lo schermo
+                width: 50,
+                height: 50,
+                speed: 2 + Math.random() * 3, // velocità casuale tra 2 e 5
+                color: 'blue'
+            };
+            enemies.push(enemy);
+        }
+
         // Funzione per disegnare tutto
         function gameLoop() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             movePlayer();
             moveBullets();
+            moveEnemies();
+            checkCollisions();
             drawPlayer();
             drawBullets();
+            drawEnemies();
             requestAnimationFrame(gameLoop);
         }
 
@@ -138,6 +209,9 @@
             };
             bullets.push(bullet);
         }
+
+        // Generazione nemici ogni 2 secondi
+        setInterval(spawnEnemy, 2000);
 
         // Avvio del gioco
         gameLoop();
