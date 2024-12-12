@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Battle Royale</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #2a2a2a;
+        }
+
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #333;
+        }
+
+        .player {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: #f00;
+            border-radius: 50%;
+        }
+
+        .bullet {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Impostazioni del canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Variabili di gioco
+        const player = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            width: 50,
+            height: 50,
+            speed: 5,
+            color: 'red',
+            dx: 0,
+            dy: 0
+        };
+
+        let bullets = [];
+
+        // Funzione per disegnare il giocatore
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        // Funzione per disegnare i proiettili
+        function drawBullets() {
+            bullets.forEach(bullet => {
+                ctx.fillStyle = bullet.color;
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+        }
+
+        // Funzione per muovere il giocatore
+        function movePlayer() {
+            player.x += player.dx;
+            player.y += player.dy;
+            
+            // Prevenire che il giocatore esca dai bordi dello schermo
+            if (player.x < 0) player.x = 0;
+            if (player.y < 0) player.y = 0;
+            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+            if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
+        }
+
+        // Funzione per muovere i proiettili
+        function moveBullets() {
+            bullets.forEach(bullet => {
+                bullet.x += bullet.dx;
+                bullet.y += bullet.dy;
+                
+                // Rimuovi i proiettili fuori dallo schermo
+                if (bullet.x < 0 || bullet.x > canvas.width || bullet.y < 0 || bullet.y > canvas.height) {
+                    bullets = bullets.filter(b => b !== bullet);
+                }
+            });
+        }
+
+        // Funzione per disegnare tutto
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            movePlayer();
+            moveBullets();
+            drawPlayer();
+            drawBullets();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Gestione dei tasti per il movimento del giocatore
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') player.dy = -player.speed;
+            if (e.key === 'ArrowDown') player.dy = player.speed;
+            if (e.key === 'ArrowLeft') player.dx = -player.speed;
+            if (e.key === 'ArrowRight') player.dx = player.speed;
+            if (e.key === ' ') shootBullet(); // Tasto spazio per sparare
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') player.dy = 0;
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') player.dx = 0;
+        });
+
+        // Funzione per sparare i proiettili
+        function shootBullet() {
+            let bullet = {
+                x: player.x + player.width / 2 - 5,
+                y: player.y,
+                width: 10,
+                height: 10,
+                speed: 7,
+                dx: 0,
+                dy: -7,
+                color: 'yellow'
+            };
+            bullets.push(bullet);
+        }
+
+        // Avvio del gioco
+        gameLoop();
+    </script>
+</body>
+</html>
