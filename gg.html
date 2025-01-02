@@ -1,9 +1,35 @@
-// Dichiarazione delle due stringhe
-let stringa1 = "esempioUno";
-let stringa2 = "esempioDue";
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validità di Due Stringhe</title>
+</head>
+<body>
+    <h1>Controllo lunghezza delle stringhe</h1>
+    <form id="stringForm">
+        <label for="stringa1">Stringa 1:</label>
+        <input type="text" id="stringa1" name="stringa1" required>
+        <br><br>
+        <label for="stringa2">Stringa 2:</label>
+        <input type="text" id="stringa2" name="stringa2" required>
+        <br><br>
+        <button type="button" onclick="verificaLunghezza()">Controlla</button>
+    </form>
+    <p id="risultato"></p>
 
-// Controllo se entrambe le stringhe hanno una lunghezza maggiore di 8
-let risultato = stringa1.length > 8 && stringa2.length > 8;
+    <script>
+        function verificaLunghezza() {
+            // Recupera i valori delle stringhe
+            let stringa1 = document.getElementById("stringa1").value;
+            let stringa2 = document.getElementById("stringa2").value;
 
-// Stampa del risultato
-console.log(risultato); // true se entrambe le stringhe sono > 8, altrimenti false
+            // Controlla se entrambe le stringhe sono > di 8
+            let risultato = stringa1.length > 8 && stringa2.length > 8;
+
+            // Mostra il risultato
+            document.getElementById("risultato").textContent = risultato ? "True" : "False";
+        }
+    </script>
+</body>
+</html>
