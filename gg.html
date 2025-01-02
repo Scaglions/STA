@@ -21,10 +21,10 @@
     <script>
         function verificaLunghezza() {
             // Recupera i valori delle stringhe
-            let stringa1 = document.getElementById("stringa1").value;
-            let stringa2 = document.getElementById("stringa2").value;
+            let stringa1 = document.getElementById("stringa1").value.trim();
+            let stringa2 = document.getElementById("stringa2").value.trim();
 
-            // Controlla se entrambe le stringhe sono > di 8
+            // Verifica se entrambe le stringhe sono lunghe più di 8 caratteri
             let risultato = stringa1.length > 8 && stringa2.length > 8;
 
             // Mostra il risultato
