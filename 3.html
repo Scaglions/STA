@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESERCIZIO 3</title>
+    <style>
+        <h1> esercizio 3 </h1>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+ 
+    <p>Inserisci il sesso (Maschio o Femmina):</p>
+    <input type="text" id="sesso" placeholder="Maschio o Femmina">
+    <button onclick="calcolaAspettativa()">Calcola</button>
+    <p id="risultato"></p>
+
+    <script>
+        function calcolaAspettativa() {
+            const sesso = document.getElementById('sesso').value.trim().toLowerCase();
+            const risultato = document.getElementById('risultato');
+            
+            if (sesso === "maschio") {
+                risultato.textContent = "L'aspettativa di vita per un uomo in Italia è di circa 81 anni.";
+            } else if (sesso === "femmina") {
+                risultato.textContent = "L'aspettativa di vita per una donna in Italia è di circa 85 anni.";
+            } else {
+                risultato.textContent = "Per favore, inserisci 'Maschio' o 'Femmina'.";
+            }
+        }
+    </script>
+</body>
+</html>
