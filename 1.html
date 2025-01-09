@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controllo Età</title>
+    <title>Esercizio Età</title>
     <script>
-        function checkAge() {
-            var age = document.getElementById("età").value;
-            var message = document.getElementById("message");
+        function controllaEta() {
+         
+            let eta = document.getElementById("eta").value;
 
-            if (età >= 18) {
-                message.innerHTML = "Accedi al sistema";
-            } else 
-            {
-                var yearsLeft = 18 - età;
-                message.innerHTML = "Puoi accedere al sistema tra " + yearsLeft + " anni";
+ 
+            let messaggio;
+            if (eta >= 18) {
+                messaggio = "Accedi al sistema";
+            } else {
+                let anniMancanti = 18 - eta;
+                messaggio = "Puoi accedere al sistema tra " + anniMancanti + " anni";
             }
-        
+
+     
+            document.getElementById("risultato").innerText = messaggio;
+        }
     </script>
 </head>
 <body>
-
-    <label for="età">Inserisci la tua età:</label>
-    <input type="number" id="età" name="età" min="0" onchange="checkAge()">
-    
-    <p id="message"></p>
-
+    <h1>Controllo Età</h1>
+    <p>Inserisci la tua età:</p>
+    <input type="number" id="eta" placeholder="Inserisci età">
+    <button onclick="controllaEta()">Controlla</button>
+    <p id="risultato"></p>
 </body>
 </html>
