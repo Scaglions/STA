@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stima Valore Immobiliare</title>
+</head>
+<body>
+    <h1>Calcolo Valore Immobiliare</h1>
+    <label for="citta">Città:</label>
+    <select id="citta">
+        <option value="5000">Genova</option>
+        <option value="7000">Savona</option>
+        <option value="6000">Imperia</option>
+    </select><br>
+
+    <label for="mq">Metri quadrati:</label>
+    <input type="number" id="mq" min="1"><br>
+
+    <label for="distanza">Distanza dal mare (m):</label>
+    <input type="number" id="distanza" min="0"><br>
+
+    <button onclick="calcolaValore()">Calcola</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calcolaValore() {
+            const baseCosto = parseInt(document.getElementById('citta').value);
+            const mq = parseInt(document.getElementById('mq').value);
+            const distanza = parseInt(document.getElementById('distanza').value);
+
+            let incremento = distanza < 100 ? 3000 : distanza < 500 ? 1500 : 500;
+            let costoMetroQuadro = baseCosto + incremento;
+            let costoTotale = costoMetroQuadro * mq;
+
+            document.getElementById('result').textContent = `Costo al mq: €${costoMetroQuadro}, Valore totale: €${costoTotale}`;
+        }
+    </script>
+</body>
+</html>
