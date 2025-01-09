@@ -6,13 +6,13 @@
     <title>Controllo Età</title>
     <script>
         function checkAge() {
-            var age = document.getElementById("age").value;
+            var age = document.getElementById("età").value;
             var message = document.getElementById("message");
 
-            if (age >= 18) {
+            if (età >= 18) {
                 message.innerHTML = "Accedi al sistema";
             } else {
-                var yearsLeft = 18 - age;
+                var yearsLeft = 18 - età;
                 message.innerHTML = "Puoi accedere al sistema tra " + yearsLeft + " anni";
             }
         }
@@ -20,8 +20,8 @@
 </head>
 <body>
 
-    <label for="age">Inserisci la tua età:</label>
-    <input type="number" id="age" name="age" min="0" onchange="checkAge()">
+    <label for="età">Inserisci la tua età:</label>
+    <input type="number" id="età" name="età" min="0" onchange="checkAge()">
     
     <p id="message"></p>
 
