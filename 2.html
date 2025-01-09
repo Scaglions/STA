@@ -7,9 +7,9 @@
     <script>
       
         function mostraAbitanti() {
-            var citta = document.getElementById("citta").value.toLowerCase();
-            var risultato = document.getElementById("risultato");
-            var abitantiTorino = "Gli abitanti di Torino sono circa 870.000 (dato aggiornato a gennaio 2023).";
+            let citta = document.getElementById("citta").value.toLowerCase();
+            let risultato = document.getElementById("risultato");
+            let abitantiTorino = "Gli abitanti di Torino sono circa 870.000 (dato aggiornato a gennaio 2023).";
             
             if (citta === "torino") {
                 risultato.innerHTML = abitantiTorino;
