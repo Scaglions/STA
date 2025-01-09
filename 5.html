@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica Pari o Dispari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verifica se un numero è Pari o Dispari</h1>
+    <label for="numero">Inserisci un numero:</label>
+    <input type="number" id="numero" placeholder="Numero" required>
+    <button onclick="verificaPariDispari()">Verifica</button>
 
+    <div id="risultato" class="result"></div>
+
+    <script>
+        function verificaPariDispari() {
+            var numero = document.getElementById("numero").value;
+            var risultatoDiv = document.getElementById("risultato");
+
+            if (numero === "") {
+                risultatoDiv.innerHTML = "Per favore, inserisci un numero!";
+                return;
+            }
+
+            if (numero % 2 === 0) {
+                risultatoDiv.innerHTML = "Il numero " + numero + " è PARI.";
+            } else {
+                risultatoDiv.innerHTML = "Il numero " + numero + " è DISPARI.";
+            }
+        }
+    </script>
+</body>
+</html>
