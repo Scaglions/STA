@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stima Valore Immobiliare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        label, input, button {
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calcolo Valore Immobiliare</h1>
+    <form id="stimaForm">
+        <label for="distanza">Distanza dal mare (in metri):</label>
+        <input type="number" id="distanza" name="distanza" required min="0" step="1">
+        <button type="button" onclick="calcolaValore()">Calcola</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function calcolaValore() {
+            const distanza = parseFloat(document.getElementById('distanza').value);
+            const costoMetroQuadro = distanza < 100 ? 10000 : 7000;
+            
+            if (!isNaN(distanza) && distanza >= 0) {
+                document.getElementById('result').textContent = 
+                    `Il costo stimato al metro quadro è di €${costoMetroQuadro.toLocaleString()}.`;
+            } else {
+                document.getElementById('result').textContent = "Inserisci una distanza valida.";
+            }
+        }
+    </script>
+</body>
+</html>
