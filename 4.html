@@ -7,16 +7,16 @@
     <script>
         function calcolaEta() {
            
-            var mese = parseInt(document.getElementById("mese").value);
-            var anno = parseInt(document.getElementById("anno").value);
+            let mese = parseInt(document.getElementById("mese").value);
+            let anno = parseInt(document.getElementById("anno").value);
             
           
-            var oggi = new Date();
-            var annoCorrente = oggi.getFullYear();
-            var meseCorrente = oggi.getMonth() + 1; 
+            let oggi = new Date();
+            let annoCorrente = oggi.getFullYear();
+            let meseCorrente = oggi.getMonth() + 1; 
 
          
-            var eta = annoCorrente - anno;
+            let eta = annoCorrente - anno;
             if (meseCorrente < mese) {
                 eta--; // Se il mese corrente è prima del mese di nascita, togli un anno
             }
