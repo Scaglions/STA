@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Città Torino e cintura</title>
+    <script>
+      
+        function mostraAbitanti() {
+            var citta = document.getElementById("citta").value.toLowerCase();
+            var risultato = document.getElementById("risultato");
+            var abitantiTorino = "Gli abitanti di Torino sono circa 870.000 (dato aggiornato a gennaio 2023).";
+            
+            if (citta === "torino") {
+                risultato.innerHTML = abitantiTorino;
+            } else if (citta === "nichelino" || citta === "moncalieri" || citta === "vinovo" || citta === "rivoli" || citta === "collegno" || citta === "settimo" || citta === "chieri") {
+                risultato.innerHTML = "Hai scelto una città della cintura di Torino: " + citta.charAt(0).toUpperCase() + citta.slice(1);
+            } else {
+                risultato.innerHTML = "Non hai scelto una città della cintura di Torino.";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Inserisci la città dove abiti</h1>
+    
+    <form>
+        <label for="citta">Città:</label>
+        <input type="text" id="citta" name="citta">
+        <button type="button" onclick="mostraAbitanti()">Verifica</button>
+    </form>
+
+    <p id="risultato"></p>
+
+    <h2>Città della cintura di Torino:</h2>
+    <ul>
+        <li>Torino</li>
+        <li>Nichelino</li>
+        <li>Moncalieri</li>
+        <li>Vinovo</li>
+        <li>Rivoli</li>
+        <li>Collegno</li>
+        <li>Settimo Torinese</li>
+        <li>Chieri</li>
+    </ul>
+
+</body>
+</html>
