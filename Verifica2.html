@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Legge di Ohm</title>
+    <script>
+        function calcola() {
+         
+            let scelta = parseInt(document.getElementById("sceltaFormula").value);
+            let risultato;
+            
+           
+            let V = parseFloat(document.getElementById("volt").value);
+            let I = parseFloat(document.getElementById("intensita").value);
+            let R = parseFloat(document.getElementById("resistenza").value);
+            
+     
+            switch (scelta) {
+                case 1: // Formula V = I * R
+                    if (!I || !R) {
+                        alert("Devi inserire i valori di Intensità di corrente (I) e Resistenza (R).");
+                        return;
+                    }
+                    risultato = I * R;
+                    document.getElementById("risultato").innerText = "V = " + risultato.toFixed(2) + " Volt";
+                    break;
+                case 2: // Formula I = V / R
+                    if (!V || !R) {
+                        alert("Devi inserire i valori di Voltaggio (V) e Resistenza (R).");
+                        return;
+                    }
+                    risultato = V / R;
+                    document.getElementById("risultato").innerText = "I = " + risultato.toFixed(2) + " Ampere";
+                    break;
+                case 3: // Formula R = V / I
+                    if (!V || !I) {
+                        alert("Devi inserire i valori di Voltaggio (V) e Intensità di corrente (I).");
+                        return;
+                    }
+                    risultato = V / I;
+                    document.getElementById("risultato").innerText = "R = " + risultato.toFixed(2) + " Ohm";
+                    break;
+                default:
+                    alert("Scelta non valida.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Calcola variabile con la Legge di Ohm</h1>
 
+    <label for="sceltaFormula">Scegli la formula:</label>
+    <select id="sceltaFormula" onchange="calcola()">
+        <option value="1">Formula 1: V = I * R</option>
+        <option value="2">Formula 2: I = V / R</option>
+        <option value="3">Formula 3: R = V / I</option>
+    </select>
+    
+    <div id="formInput">
+        <div>
+            <label for="volt">Voltaggio (V) in Volt:</label>
+            <input type="number" id="volt" step="any" placeholder="Voltaggio" onchange="calcola()">
+        </div>
+        <div>
+            <label for="intensita">Intensità di corrente (I) in Ampere:</label>
+            <input type="number" id="intensita" step="any" placeholder="Intensità di corrente" onchange="calcola()">
+        </div>
+        <div>
+            <label for="resistenza">Resistenza (R) in Ohm:</label>
+            <input type="number" id="resistenza" step="any" placeholder="Resistenza" onchange="calcola()">
+        </div>
+    </div>
+    
+    <h2 id="risultato"></h2>
+</body>
+</html>
