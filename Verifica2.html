@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcolo Legge di Ohm</title>
+    <title>Legge di Ohm</title>
     <script>
         function calcola() {
          
@@ -11,9 +11,9 @@
             let risultato;
             
            
-            let V = parseFloat(document.getElementById("volt").value);
-            let I = parseFloat(document.getElementById("intensita").value);
-            let R = parseFloat(document.getElementById("resistenza").value);
+            let V = parseFloat(document.getElementById("voltaggio (volt)").value);
+            let I = parseFloat(document.getElementById("intensita di corrente (ampere)").value);
+            let R = parseFloat(document.getElementById("resistenza (ohm)").value);
             
      
             switch (scelta) {
@@ -48,12 +48,13 @@
     </script>
 </head>
 <body>
+    <h4> Davide Scaglione <h4>
     <h1>Calcola variabile con la Legge di Ohm</h1>
 
     <label for="sceltaFormula">Scegli la formula:</label>
     <select id="sceltaFormula" onchange="calcola()">
         <option value="1">Formula 1: V = I * R</option>
-        <option value="2">Formula 2: I = V / R</option>
+        <option value="2">Formula 2: I = V / R</option> 
         <option value="3">Formula 3: R = V / I</option>
     </select>
     
