@@ -17,7 +17,7 @@
             
      
             switch (scelta) {
-                case 1: // Formula V = I * R
+                case 1: 
                     if (!I || !R) {
                         alert("Devi inserire i valori di Intensità di corrente (I) e Resistenza (R).");
                         return;
@@ -25,7 +25,7 @@
                     risultato = I * R;
                     document.getElementById("risultato").innerText = "V = " + risultato.toFixed(2) + " Volt";
                     break;
-                case 2: // Formula I = V / R
+                case 2: 
                     if (!V || !R) {
                         alert("Devi inserire i valori di Voltaggio (V) e Resistenza (R).");
                         return;
@@ -33,7 +33,7 @@
                     risultato = V / R;
                     document.getElementById("risultato").innerText = "I = " + risultato.toFixed(2) + " Ampere";
                     break;
-                case 3: // Formula R = V / I
+                case 3: 
                     if (!V || !I) {
                         alert("Devi inserire i valori di Voltaggio (V) e Intensità di corrente (I).");
                         return;
