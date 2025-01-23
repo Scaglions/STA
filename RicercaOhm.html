@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Legge di Ohm</title>
+    <body>
+ 
+        <h1>LEGGE DI OHM</h1>
+        <style>
+        #CALCOLA {
+            position: relative;
+            background-color: #04AA6D;
+            border: none;
+            font-size: 28px;
+            color: #FFFFFF;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+            cursor: pointer;
+          }
+          
+          #CALCOLA:after {
+            content: "";
+            background: #f1f1f1;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+          }
+          
+          #CALCOLA:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+          }
+          </style>
+        <label for="formula">Scegli la formula:</label>
+        <select id="formula">
+            <option value="1">V = I ⋅ R</option>
+            <option value="2">I = V / R</option>
+            <option value="3">R = V / I</option>
+        </select>
+    
+        <div id="inputFields">
+            <div id="inputs1">
+                <label for="I">Intensità (I in Ampere):</label>
+                <input type="number" id="I"><br>
+                <label for="R">Resistenza (R in Ohm):</label>
+                <input type="number" id="R"><br>
+            </div>
+            <div id="inputs2" style="display:none;">
+                <label for="V">Voltaggio (V in Volt):</label>
+                <input type="number" id="V"><br>
+                <label for="R">Resistenza (R in Ohm):</label>
+                <input type="number" id="R"><br>
+            </div>
+            <div id="inputs3" style="display:none;">
+                <label for="V">Voltaggio (V in Volt):</label>
+                <input type="number" id="V"><br>
+                <label for="I">Intensità (I in Ampere):</label>
+                <input type="number" id="I"><br>
+            </div>
+        </div>
+    
+        <button id="CALCOLA" onclick="CALCOLA()">Calcola</button>
+        <p id="result"></p>
+       
+<head>
+    <script>
+        document.getElementById('formula').addEventListener('change', function() {
+            let formula = this.value;
+            document.getElementById('inputs1').style.display = formula === '1' ? 'block' : 'none';
+            document.getElementById('inputs2').style.display = formula === '2' ? 'block' : 'none';
+            document.getElementById('inputs3').style.display = formula === '3' ? 'block' : 'none';
+        });
+    </script>
+    <script>
+        {
+            let formula = document.getElementById('formula').value;
+            let result = '';
 
+            if (formula === '1') {
+                let I = parseFloat(document.getElementById('I').value);
+                let R = parseFloat(document.getElementById('R').value);
+                if (!isNaN(I) && !isNaN(R)) {
+                    result = `Voltaggio (V): ${I * R} Volt`;
+                } else {
+                    result = 'Inserisci valori validi!';
+                }
+            } else if (formula === '2') {
+                let V = parseFloat(document.getElementById('V').value);
+                let R = parseFloat(document.getElementById('R').value);
+                if (!isNaN(V) && !isNaN(R) && R !== 0) {
+                    result = `Intensità (I): ${V / R} Ampere`;
+                } else {
+                    result = 'Inserisci valori validi!';
+                }
+            } else if (formula === '3') {
+                let V = parseFloat(document.getElementById('V').value);
+                let I = parseFloat(document.getElementById('I').value);
+                if (!isNaN(V) && !isNaN(I) && I !== 0) {
+                    result = `Resistenza (R): ${V / I} Ohm`;
+                } else {
+                    result = 'Inserisci valori validi!';
+                }
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</head>
+</body>
+</html>
