@@ -1,1 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Dazi di Esportazione</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
 
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .info-text {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Calcolatore Dazi di Esportazione</h1>
+</header>
+
+<div class="container">
+    <h2>Tabella dei Dazi per Paese</h2>
+    <div class="info-text">
+        <p>
+            Un dazio doganale è una tassa applicata su beni importati o esportati. Varia a seconda del paese di destinazione e del tipo di prodotto. Di seguito è riportata una tabella di esempio con le aliquote dei dazi per alcuni paesi.
+        </p>
+        <table>
+            <tr>
+                <th>Paese</th>
+                <th>Dazio (%)</th>
+            </tr>
+            <tr>
+                <td>Italia</td>
+                <td>5%</td>
+            </tr>
+            <tr>
+                <td>Francia</td>
+                <td>4%</td>
+            </tr>
+            <tr>
+                <td>USA</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Germania</td>
+                <td>3%</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Calcolatore Esportazione</h2>
+
+    <div class="form-group">
+        <label for="costo">Costo in Euro (€):</label>
+        <input type="number" id="costo" placeholder="Inserisci il costo">
+    </div>
+
+    <div class="form-group">
+        <label for="ricarico">Ricarico in Euro (€):</label>
+        <input type="number" id="ricarico" placeholder="Inserisci il ricarico">
+    </div>
+
+    <div class="form-group">
+        <label for="percentuale">Percentuale (0 - 100):</label>
+        <input type="number" id="percentuale" value="20" min="0" max="100" placeholder="Inserisci la percentuale">
+    </div>
+
+    <div class="form-group">
+        <label for="percentualeDazio">Dazio in Euro (€) e Conversione in $:</label>
+        <input type="text" id="percentualeDazio" readonly>
+    </div>
+
+    <button onclick="calcolaExport()">Calcola Valore Esportazione</button>
+    <button onclick="calcolaPercentuale()">Calcola Percentuale</button>
+
+    <div class="result">
+        <h3>Risultati</h3>
+        <p id="risultatoExport"></p>
+        <p id="risultatoPercentuale"></p>
+    </div>
+</div>
+
+<script>
+    function calcolaExport() {
+        const costo = parseFloat(document.getElementById("costo").value);
+        const ricarico = parseFloat(document.getElementById("ricarico").value);
+        
+        if (!isNaN(costo) && !isNaN(ricarico)) {
+            const totale = costo + ricarico;
+            document.getElementById("risultatoExport").innerText = "Valore Esportazione Totale: €" + totale.toFixed(2);
+            return totale;
+        } else {
+            alert("Inserisci valori validi per il costo e il ricarico.");
+        }
+    }
+
+    function calcolaPercentuale() {
+        const totale = calcolaExport();
+        if (totale) {
+            const percentuale = parseFloat(document.getElementById("percentuale").value);
+            if (!isNaN(percentuale) && percentuale >= 0 && percentuale <= 100) {
+                const valorePercentuale = (totale * percentuale) / 100;
+                const cambioDollaro = valorePercentuale * 1.1;
+                document.getElementById("risultatoPercentuale").innerText = 
+                    `Percentuale: €${valorePercentuale.toFixed(2)} (equivalente a $${cambioDollaro.toFixed(2)})`;
+                document.getElementById("percentualeDazio").value = 
+                    `Dazio: €${valorePercentuale.toFixed(2)} / Conversione in $: $${cambioDollaro.toFixed(2)}`;
+            } else {
+                alert("Inserisci una percentuale valida tra 0 e 100.");
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
