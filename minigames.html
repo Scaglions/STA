@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gioco delle Operazioni</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #f0f0f0;
+    }
+    .hidden {
+      display: none;
+    }
+    .game {
+      margin-top: 30px;
+    }
+    button {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎮 Gioco delle Operazioni</h1>
+  <p>Scegli un minigioco matematico:</p>
+
+  <div id="menu">
+    <button onclick="startGame('add')">➕ Addizione</button>
+    <button onclick="startGame('sub')">➖ Sottrazione</button>
+    <button onclick="startGame('mul')">✖️ Moltiplicazione</button>
+    <button onclick="startGame('div')">➗ Divisione</button>
+  </div>
+
+  <div id="game" class="game hidden">
+    <h2 id="operation-title"></h2>
+    <div id="question"></div>
+    <input type="number" id="answer" placeholder="Risposta">
+    <br>
+    <button onclick="checkAnswer()">Verifica</button>
+    <p id="feedback"></p>
+    <button onclick="nextQuestion()">Prossima domanda</button>
+    <br><br>
+    <button onclick="goBack()">⬅ Torna al menu</button>
+  </div>
+
+  <script>
+    let currentOperation = '';
+    let correctAnswer = 0;
+
+    function startGame(op) {
+      currentOperation = op;
+      document.getElementById('menu').classList.add('hidden');
+      document.getElementById('game').classList.remove('hidden');
+      document.getElementById('operation-title').textContent = {
+        'add': 'Minigioco: Addizione',
+        'sub': 'Minigioco: Sottrazione',
+        'mul': 'Minigioco: Moltiplicazione',
+        'div': 'Minigioco: Divisione'
+      }[op];
+      nextQuestion();
+    }
+
+    function generateQuestion() {
+      const a = Math.floor(Math.random() * 20) + 1;
+      const b = Math.floor(Math.random() * 20) + 1;
+      let questionText = '';
+      switch(currentOperation) {
+        case 'add':
+          correctAnswer = a + b;
+          questionText = `${a} + ${b} = ?`;
+          break;
+        case 'sub':
+          correctAnswer = a - b;
+          questionText = `${a} - ${b} = ?`;
+          break;
+        case 'mul':
+          correctAnswer = a * b;
+          questionText = `${a} × ${b} = ?`;
+          break;
+        case 'div':
+          let x = a * b;
+          correctAnswer = b;
+          questionText = `${x} ÷ ${a} = ?`;
+          break;
+      }
+      return questionText;
+    }
+
+    function nextQuestion() {
+      document.getElementById('question').textContent = generateQuestion();
+      document.getElementById('answer').value = '';
+      document.getElementById('feedback').textContent = '';
+    }
+
+    function checkAnswer() {
+      const userAnswer = Number(document.getElementById('answer').value);
+      const feedback = document.getElementById('feedback');
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = '✅ Corretto!';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = `❌ Sbagliato. La risposta giusta era ${correctAnswer}.`;
+        feedback.style.color = 'red';
+      }
+    }
+
+    function goBack() {
+      document.getElementById('menu').classList.remove('hidden');
+      document.getElementById('game').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
