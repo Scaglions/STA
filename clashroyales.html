@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore di Mazzi Clash Royale</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { margin-bottom: 20px; }
+    button { padding: 10px 15px; font-size: 1em; cursor: pointer; }
+    .deck { margin-top: 20px; }
+    .cards { list-style: none; padding-left: 0; }
+    .cards li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+
+<h1>Generatore casuale di mazzi Clash Royale</h1>
+<button onclick="generaMazzo()">Genera Mazzo</button>
+
+<div id="mazzo"></div>
+
+<script>
+  const mazzi = [
+    // 1–10 (già presenti prima)
+    {
+      nome: "Ciclo Bait con Goblin Lanciere (Evo)",
+      carte: ["Barile Goblin (Evo)", "Goblin cerbottaniere (Evo)", "Cavaliere", "Principessa", "Gang di Goblin", "Spirito di Ghiaccio", "Cannone", "Tronco"]
+    },
+    {
+      nome: "Reclute Reali + Maiali Reali",
+      carte: ["Maiali Royale (Evo)", "Reclute Royale (Evo)", "Scaricuccioli", "Macchina Volante", "Gabbia Goblin", "Palla di Fuoco", "Freccie", "Barile Barbarico"]
+    },
+    {
+      nome: "X-Bow 3.0",
+      carte: ["Arco-X", "Tesla (Evo)", "Scheletrini", "Cavaliere", "Spirito di Ghiaccio", "Arcieri (Evo)", "Palla di Fuoco", "Tronco"]
+    },
+    {
+      nome: "Hog Rider 2.6",
+      carte: ["Domatore di Cinghiali", "Golem del Ghiaccio", "Moschettiere", "Spirito di Ghiaccio", "Scheletrini", "Palla di Fuoco", "Tronco", "Cannone (Evo)"]
+    },
+    {
+      nome: "Electro Giant Beatdown",
+      carte: ["Gigante Elettrico", "Boscaiolo", "Cavaliere Dorato", "Fulmine", "Tornado", "Strega Madre", "Gabbia Goblin", "Spirito Elettrico"]
+    },
+    {
+      nome: "LavaLoon Classico",
+      carte: ["Mastino lavico", "Mongolfiera", "Drago Infernale", "Sgherri", "Lapide", "Palla di Fuoco", "Freccie", "Barile Barbarico"]
+    },
+    {
+      nome: "Golem Beatdown",
+      carte: ["Golem", "Strega Notturna", "Boscaiolo", "Cucciolo di drago", "Fulmine", "Tornado", "Lapide", "Spirito di Ghiaccio"]
+    },
+    {
+      nome: "Mortaio Cycle",
+      carte: ["Mortaio", "Minatore", "Arceri", "Bombarolo", "Cannone a rotelle", "Spirito di Fuoco", "Palla di Fuoco", "Tronco"]
+    },
+    {
+      nome: "Bridge Spam PEKKA",
+      carte: ["PEKKA", "Ariete da Battaglia", "Fantasma Royale", "Arciere Magico", "Scarica", "Barile Barbarico", "Fulmine", "Spirito di Ghiaccio"]
+    },
+    {
+      nome: "Monaco + Fenice Control",
+      carte: ["Monaco", "Fenice", "Lapide", "Drago Infernale", "Mini PEKKA", "Fulmine", "Freccie", "Spirito Elettrico"]
+    },
+
+    // 11–25 NUOVI MAZZI ↓↓↓
+
+    {
+      nome: "Gigante Royale + Pescatore",
+      carte: ["Gigante Royale", "Pescatore", "Cacciatore", "Macchina Volante", "Scarica", "Barile Barbarico", "Zappies", "Gabbia Goblin"]
+    },
+    {
+      nome: "Goblin Drill Spam",
+      carte: ["Trivella Goblin", "Fuorilegge", "Fantasma Royale", "Arciere Magico", "Cavaliere Dorato", "Barile Barbarico", "Fulmine", "Spirito di Fuoco"]
+    },
+    {
+      nome: "Balloon Freeze",
+      carte: ["Mongolfiera", "Drago Infernale", "Cavaliere", "Tornado", "Congelamento", "Palla di Neve", "Lapide", "Spirito di Ghiaccio"]
+    },
+    {
+      nome: "Mega Knight + Wall Breakers",
+      carte: ["Gran Cavaliere", "Spaccamuro", "Minatore", "Pipistrelli", "Bombarolo", "Scarica", "Barile Barbarico", "Arceri"]
+    },
+    {
+      nome: "Giant Double Prince",
+      carte: ["Gigante", "Principe", "Principe Nero", "Strega Notturna", "Scarica", "Palla di Fuoco", "Mini PEKKA", "Goblin Cerbottaniere"]
+    },
+    {
+      nome: "Miner Control con Bombarolo",
+      carte: ["Minatore", "Bombarolo", "Drago Infernale", "Cavaliere", "Tornado", "Palla di Fuoco", "Tronco", "Spirito di Ghiaccio"]
+    },
+    {
+      nome: "Royal Giant + Strega Madre",
+      carte: ["Gigante Royale", "Strega Madre", "Pescatore", "Scaricuccioli", "Cacciatore", "Scarica", "Barile Barbarico", "Fulmine"]
+    },
+    {
+      nome: "Splashyard (Cimitero + Bowler)",
+      carte: ["Cimitero", "Mago di Ghiaccio", "Bocciatore", "Tornado", "Lapide", "Cucciolo Di Drago", "Veleno", "Cavaliere"]
+    },
+    {
+      nome: "Ram Rider Control",
+      carte: ["Ariete Da Battaglia", "Cavaliere Dorato", "Strega Madre", "Cacciatore", "Tornado", "Barile Barbarico", "Fulmine", "Gabbia Goblin"]
+    },
+    {
+      nome: "Mortar Miner con Regina Arciera",
+      carte: ["Mortaio", "Minatore", "Regina Arciere", "Cannone A Rotelle", "Spirito di Fuoco", "Bombarolo", "Palla di Fuoco", "Tronco"]
+    },
+    {
+      nome: "Veleno Miner Chip",
+      carte: ["Minatore", "Veleno", "Arceri", "Lapide", "Drago Infernale", "Spirito Elettrico", "Tronco", "Golem del Ghiaccio"]
+    },
+    {
+      nome: "Deck Full Aereo",
+      carte: ["Mastino Lavico", "Mongolfiera", "Megasgherro", "Drago Infernale", "Cucciolo Di Drago", "Freccie", "Palla di Fuoco", "Lapide"]
+    },
+    {
+      nome: "E-Barbs Rage",
+      carte: ["Barbari Scelti", "Furia", "Stregone", "Golem del Ghiaccio", "Palla di Fuoco", "Scarica", "Cannone A Rotelle", "Spirito di Fuoco"]
+    },
+    {
+      nome: "Giant Skeleton Control",
+      carte: ["Scheletro Gigante", "Mortaio", "Bombarolo", "Arceri", "Minatore", "Spirito di Ghiaccio", "Palla di Fuoco", "Tronco"]
+    },
+    {
+      nome: "Prince Bait",
+      carte: ["Principe", "Barile Goblin", "Gang di Goblin", "Principessa", "Cannone A Rotelle", "Tronco", "Scarica", "Domatore Di Cinghiali"]
+    }
+  ];
+
+  function generaMazzo() {
+    const selezionato = mazzi[Math.floor(Math.random() * mazzi.length)];
+    const div = document.getElementById("mazzo");
+    div.innerHTML = `
+      <div class="deck">
+        <h2>${selezionato.nome}</h2>
+        <ul class="cards">
+          ${selezionato.carte.map(c => <li>${c}</li>).join("")}
+        </ul>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
