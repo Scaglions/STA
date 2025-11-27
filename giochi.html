@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Generatore di Giochi Gratis per PC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #eef2f3;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    #gioco {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 1.3em;
+    }
+    .titolo {
+      font-weight: bold;
+      font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎮 Generatore di Giochi Gratis per PC</h1>
+
+<button onclick="generaGioco()">Genera un Gioco</button>
+
+<div id="gioco"></div>
+
+<script>
+  const giochi = [
+    {nome:"Fortnite", descrizione:"Battle royale gratuito con modalità creative e costanti aggiornamenti."},
+    {nome:"Valorant", descrizione:"Sparatutto tattico 5v5 con abilità uniche e gameplay competitivo."},
+    {nome:"League of Legends", descrizione:"MOBA tra i più giocati al mondo, completamente free-to-play."},
+    {nome:"Dota 2", descrizione:"MOBA complesso e profondo, totalmente gratuito su Steam."},
+    {nome:"Genshin Impact", descrizione:"Gioco open world d'azione con una storia ricca e mondo esplorabile."},
+    {nome:"Apex Legends", descrizione:"Battle royale veloce con eroi dai poteri speciali."},
+    {nome:"Warframe", descrizione:"Gioco cooperativo PvE con ninja spaziali e loot a volontà."},
+    {nome:"Team Fortress 2", descrizione:"Classico FPS a squadre con classi uniche e azione frenetica."},
+    {nome:"Path of Exile", descrizione:"Action RPG hardcore e complesso, considerato l’erede di Diablo 2."},
+    {nome:"Counter-Strike 2", descrizione:"Lo sparatutto competitivo più famoso al mondo, ora free-to-play."},
+    {nome:"PUBG: Battlegrounds", descrizione:"Il padre dei battle royale, oggi gratuito."},
+    {nome:"Halo Infinite Multiplayer", descrizione:"Il multiplayer di Halo completamente gratis."},
+    {nome:"Roblox", descrizione:"Piattaforma creativa dove puoi giocare migliaia di giochi creati dagli utenti."},
+    {nome:"Paladins", descrizione:"FPS a squadre in stile hero shooter, simile a Overwatch."},
+    {nome:"Dauntless", descrizione:"Caccia ai mostri cooperativa in stile Monster Hunter."},
+    {nome:"Magic: The Gathering Arena", descrizione:"Gioco di carte strategico gratuito basato sul celebre TCG."},
+    {nome:"Smite", descrizione:"MOBA in terza persona con divinità come personaggi giocabili."},
+    {nome:"Brawlhalla", descrizione:"Picchiaduro platform gratuito, simile a Super Smash Bros."},
+    {nome:"War Thunder", descrizione:"Simulatore di guerra con aerei, carri armati e navi."},
+    {nome:"World of Tanks", descrizione:"Gioco strategico/combattimento tra carri armati in multiplayer."},
+    {nome:"World of Warships", descrizione:"Battaglie navali MMO free-to-play."},
+    {nome:"Trove", descrizione:"MMORPG voxel stile Minecraft con crafting e dungeon."},
+    {nome:"Crossfire", descrizione:"FPS competitivo gratuito molto popolare in Asia."},
+    {nome:"Destiny 2", descrizione:"MMO sparatutto con campagne e multiplayer free-to-play."},
+    {nome:"Star Wars: The Old Republic", descrizione:"MMORPG free-to-play ambientato nell’universo di Star Wars."},
+    {nome:"Planetside 2", descrizione:"MMO FPS con enormi battaglie tra fazioni."},
+    {nome:"Neverwinter", descrizione:"MMORPG basato su D&D completamente gratuito."},
+    {nome:"Enlisted", descrizione:"FPS tattico ambientato nella Seconda Guerra Mondiale."},
+    {nome:"Spellbreak", descrizione:"Battle royale con magia invece di armi, gratuito."},
+    {nome:"Cuisine Royale", descrizione:"Battle royale gratuito con elementi stravaganti e armi assurde."}
+  ];
+
+  function generaGioco() {
+    const random = giochi[Math.floor(Math.random() * giochi.length)];
+    document.getElementById("gioco").innerHTML = `
+      <div class="titolo">${random.nome}</div>
+      <p>${random.descrizione}</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
