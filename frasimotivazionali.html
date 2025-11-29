@@ -1,150 +1,157 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>100 Frasi Motivazionali Casuali</title>
+<title>Generatore Frasi Motivazionali</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-        padding: 20px;
-    }
-    h1 {
-        text-align: center;
-    }
-    .phrase {
-        background: white;
-        padding: 10px;
-        margin: 8px 0;
-        border-left: 4px solid #2b8aff;
-    }
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  background: #f0f0f0;
+}
+
+#frase {
+  font-size: 22px;
+  margin: 30px auto;
+  width: 80%;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 26px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #028e5b;
+}
 </style>
 </head>
 <body>
 
-<h1>100 Frasi Motivazionali Casuali</h1>
-<div id="container"></div>
+<h2>Generatore di Frasi Motivazionali</h2>
+
+<div id="frase">Clicca il pulsante per generare una frase!</div>
+
+<button onclick="generaFrase()">Genera Frase</button>
 
 <script>
 const frasi = [
-    "Credi nelle tue capacità.",
-    "Ogni passo avanti è progresso.",
-    "La costanza supera il talento.",
-    "Non arrenderti mai.",
-    "Il successo nasce dalla disciplina.",
-    "Le difficoltà forgiano la forza.",
-    "Fai oggi ciò che ti avvicina ai tuoi obiettivi.",
-    "Nessun sogno è troppo grande.",
-    "Sii migliore di ieri.",
-    "Il coraggio è il primo passo verso tutto.",
-    "Le grandi cose richiedono tempo.",
-    "La tua determinazione è il tuo potere.",
-    "Non aspettare l’ispirazione: agisci.",
-    "Impara dai fallimenti.",
-    "Ogni errore è un insegnamento.",
-    "Continua anche quando è difficile.",
-    "Il futuro appartiene a chi crede.",
-    "Non smettere finché non sei orgoglioso.",
-    "Il successo è una scelta quotidiana.",
-    "Sii costante, non perfetto.",
-    "La tua unica limitazione è la tua mente.",
-    "Agisci come se fosse impossibile fallire.",
-    "Osa andare oltre.",
-    "Dai valore al tuo tempo.",
-    "Ogni giorno è una nuova opportunità.",
-    "Per ottenere risultati serve coraggio.",
-    "Se puoi sognarlo, puoi farlo.",
-    "La motivazione nasce dall'azione.",
-    "Non smettere di migliorarti.",
-    "Trasforma gli ostacoli in opportunità.",
-    "Non confrontarti con gli altri.",
-    "Sii paziente, ma non passivo.",
-    "La forza cresce nei momenti difficili.",
-    "Credi fortemente nei tuoi obiettivi.",
-    "La disciplina costruisce la libertà.",
-    "Cerca il progresso, non la perfezione.",
-    "Sorridi alle sfide.",
-    "Fai oggi qualcosa per il tuo futuro.",
-    "Ogni sacrificio ha un valore.",
-    "Abbi fiducia in te stesso.",
-    "Chi non prova non ottiene.",
-    "Dai il massimo, sempre.",
-    "La vita premia chi persiste.",
-    "Nessun ostacolo è insuperabile.",
-    "Le piccole abitudini formano grandi risultati.",
-    "Inizia con ciò che hai.",
-    "Non aver paura di cambiare.",
-    "Ogni giorno puoi ricominciare.",
-    "Punta alla versione migliore di te.",
-    "Lavora duro in silenzio.",
-    "Tieni la mente aperta.",
-    "Fai ciò che ti fa crescere.",
-    "La tua energia attira risultati.",
-    "Non mollare proprio ora.",
-    "Sii forte, anche quando è difficile.",
-    "Le grandi vittorie richiedono grandi sacrifici.",
-    "Concentrati su ciò che conta.",
-    "Non rimandare: inizia.",
-    "L’autodisciplina è il vero superpotere.",
-    "Non sottovalutare il tuo potenziale.",
-    "Cadi sette volte, rialzati otto.",
-    "Scegli pensieri che ti potenziano.",
-    "Allenati a pensare positivo.",
-    "Ogni giorno è un’occasione per crescere.",
-    "Metti il cuore in ciò che fai.",
-    "Dai sempre il meglio di te.",
-    "Continua finché non diventa facile.",
-    "Rendi orgoglioso il tuo futuro te stesso.",
-    "Non accontentarti.",
-    "Mantieni la rotta.",
-    "La disciplina porta lontano.",
-    "Meriti ciò per cui lavori.",
-    "Non temere i cambiamenti.",
-    "Rimani concentrato.",
-    "Sii il tuo principale alleato.",
-    "La motivazione arriva facendo.",
-    "Non chiederti se è possibile: rendilo possibile.",
-    "Crea opportunità.",
-    "Anche il percorso più lungo inizia dal primo passo.",
-    "Circondati di positività.",
-    "Vinci la battaglia nella mente.",
-    "Trasforma i 'non posso' in 'posso'.",
-    "Sii costante con te stesso.",
-    "Le sfide fanno crescere.",
-    "Lavora in silenzio, lascia parlare i risultati.",
-    "Ogni mattina è una rinascita.",
-    "Non guardare indietro troppo a lungo.",
-    "Valorizza ogni piccolo progresso.",
-    "I limiti sono spesso illusioni.",
-    "Credi nel processo.",
-    "Sii resiliente.",
-    "Non avere paura di fallire.",
-    "Chi persevera vince.",
-    "La crescita richiede coraggio.",
-    "Segui i tuoi valori.",
-    "Agisci senza aspettare l’occasione perfetta.",
-    "Accetta ciò che non puoi cambiare, migliora ciò che puoi.",
-    "Fai spazio alla tua versione migliore.",
-    "Non perdere mai la speranza.",
-    "La determinazione apre porte.",
-    "Tu puoi fare molto più di ciò che pensi."
+"Credi in te stesso e sarai inarrestabile.",
+"Ogni grande viaggio inizia con un piccolo passo.",
+"Non arrenderti: le cose belle richiedono tempo.",
+"Il successo è la somma di piccoli sforzi ripetuti ogni giorno.",
+"Trasforma i tuoi sogni in obiettivi, e i tuoi obiettivi in realtà.",
+"La disciplina ti porta dove la motivazione non arriva.",
+"Chi non osa nulla, non spera in nulla.",
+"Non aspettare il momento perfetto: crealo.",
+"Le sfide sono ciò che rendono la vita interessante.",
+"Non smettere mai di credere in un domani migliore.",
+"Le difficoltà preparano persone ordinarie a destini straordinari.",
+"La forza non viene dal vincere, ma dalle sconfitte superate.",
+"Ogni giorno è una nuova opportunità per migliorare.",
+"La costanza batte il talento, quando il talento non è costante.",
+"La tua unica limitazione è la tua mente.",
+"Se puoi sognarlo, puoi farlo.",
+"Il successo appartiene a chi non si arrende.",
+"Fai oggi qualcosa per cui domani ti ringrazierai.",
+"La vita premia chi agisce, non chi aspetta.",
+"I sogni non funzionano se non lavori per realizzarli.",
+"Non importa quanto vai piano, l'importante è non fermarsi.",
+"Diventa la versione migliore di te stesso.",
+"Il tuo futuro dipende da ciò che fai oggi.",
+"Agisci come se ciò che fai facesse la differenza: lo fa.",
+"Il coraggio è resistenza alla paura, non assenza di paura.",
+"Le grandi cose non vengono mai dalla comfort zone.",
+"Non limitare le tue sfide: sfida i tuoi limiti.",
+"Ogni fallimento è un passo verso il successo.",
+"Il momento migliore per iniziare è ora.",
+"La tua vita è il risultato delle tue scelte.",
+"Non devi essere grande per iniziare, ma iniziare per diventare grande.",
+"Sii più forte delle tue scuse.",
+"Il segreto del progresso è iniziare.",
+"La perseveranza trasforma l’impossibile in possibile.",
+"La motivazione ti avvia, l'abitudine ti porta lontano.",
+"La felicità è una scelta quotidiana.",
+"Circondati di persone che tirano fuori il meglio di te.",
+"Ogni giorno è un nuovo inizio.",
+"Non puoi cambiare il vento, ma puoi regolare le vele.",
+"Vinci le tue paure e conquisterai il mondo.",
+"Non guardare indietro: non vai in quella direzione.",
+"Le piccole azioni quotidiane creano grandi risultati.",
+"Credi di potercela fare e sei già a metà strada.",
+"Non arrenderti: spesso è l’ultima chiave quella che apre la porta.",
+"Il successo non arriva per caso, arriva per scelta.",
+"L’unico vero fallimento è smettere di provare.",
+"Trasforma i problemi in opportunità.",
+"La costanza è la chiave del successo.",
+"Focalizzati su ciò che puoi controllare.",
+"Fai ciò che puoi, con ciò che hai, dove sei.",
+"Non confrontarti con gli altri: supera te stesso.",
+"Il futuro appartiene a chi crede nei propri sogni.",
+"I risultati arrivano a chi non smette mai.",
+"Le scuse non bruciano calorie.",
+"La tua vita migliora quando decidi di migliorare.",
+"Non temere di essere diverso, temi di essere uguale agli altri.",
+"Osa vivere la vita che hai immaginato.",
+"Se vuoi qualcosa che non hai mai avuto, devi fare qualcosa che non hai mai fatto.",
+"Sostenere un sogno è più difficile che sognarlo.",
+"La paura è temporanea, il rimpianto è per sempre.",
+"Continua a spingere, sei più vicino di quanto pensi.",
+"Non mollare: il prossimo tentativo potrebbe essere quello giusto.",
+"La vittoria arriva dopo l’ultimo sforzo.",
+"Non permettere a nessuno di dirti che non puoi farcela.",
+"Ogni giorno è un'occasione per rinascere.",
+"Non importa quante volte cadi, importa quante volte ti rialzi.",
+"Sogna in grande, lavora duro, rimani umile.",
+"Non aspettare opportunità, creale.",
+"La vita comincia dove finisce la paura.",
+"Credi che puoi, e sarà così.",
+"Ogni ostacolo è un insegnamento.",
+"Non lasciare che la paura decida per te.",
+"Il cambiamento inizia da te.",
+"Non vivere la stessa giornata per 70 anni chiamandola vita.",
+"Non serve vedere tutta la scala: sali il primo gradino.",
+"Non aver paura di fallire: abbi paura di non provarci.",
+"Ogni giorno fai un passo in più.",
+"La mente è tutto: diventi ciò che pensi.",
+"Costruisci la tua fortuna.",
+"La disciplina è la più grande forma di auto-amore.",
+"Non sprecare energia per ciò che non puoi controllare.",
+"Un piccolo progresso ogni giorno porta a grandi risultati.",
+"La vita ti mette alla prova, ma tu dimostra chi sei.",
+"Non fermarti finché non sei fiero.",
+"Fai ciò che ti rende vivo.",
+"Ogni sforzo conta.",
+"Il fallimento non è l’opposto del successo, è parte del successo.",
+"Non permettere ai dubbi di frenarti.",
+"Sii la persona che volevi essere da bambino.",
+"La tua forza cresce nei momenti difficili.",
+"Non è mai troppo tardi per ricominciare.",
+"Il mondo appartiene a chi crede nel proprio valore.",
+"Ogni errore ti avvicina alla soluzione.",
+"L’energia segue l’attenzione: scegli bene dove guardi.",
+"Più lavori duro, più sarai fortunato.",
+"La differenza tra chi riesce e chi fallisce è la persistenza.",
+"Non smettere quando sei stanco: smetti quando hai finito.",
+"La tua vita è nelle tue mani."
 ];
 
-// Genera 100 frasi casuali
-function generaFrasi() {
-    const container = document.getElementById("container");
-
-    for (let i = 0; i < 100; i++) {
-        const indice = Math.floor(Math.random() * frasi.length);
-        const div = document.createElement("div");
-        div.className = "phrase";
-        div.textContent = (i + 1) + ". " + frasi[indice];
-        container.appendChild(div);
-    }
+function generaFrase() {
+  const casuale = Math.floor(Math.random() * frasi.length);
+  document.getElementById("frase").innerHTML = frasi[casuale];
 }
-
-generaFrasi();
 </script>
 
 </body>
 </html>
+
