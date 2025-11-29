@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>100 Frasi Motivazionali Casuali</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .phrase {
+        background: white;
+        padding: 10px;
+        margin: 8px 0;
+        border-left: 4px solid #2b8aff;
+    }
+</style>
+</head>
+<body>
+
+<h1>100 Frasi Motivazionali Casuali</h1>
+<div id="container"></div>
+
+<script>
+const frasi = [
+    "Credi nelle tue capacità.",
+    "Ogni passo avanti è progresso.",
+    "La costanza supera il talento.",
+    "Non arrenderti mai.",
+    "Il successo nasce dalla disciplina.",
+    "Le difficoltà forgiano la forza.",
+    "Fai oggi ciò che ti avvicina ai tuoi obiettivi.",
+    "Nessun sogno è troppo grande.",
+    "Sii migliore di ieri.",
+    "Il coraggio è il primo passo verso tutto.",
+    "Le grandi cose richiedono tempo.",
+    "La tua determinazione è il tuo potere.",
+    "Non aspettare l’ispirazione: agisci.",
+    "Impara dai fallimenti.",
+    "Ogni errore è un insegnamento.",
+    "Continua anche quando è difficile.",
+    "Il futuro appartiene a chi crede.",
+    "Non smettere finché non sei orgoglioso.",
+    "Il successo è una scelta quotidiana.",
+    "Sii costante, non perfetto.",
+    "La tua unica limitazione è la tua mente.",
+    "Agisci come se fosse impossibile fallire.",
+    "Osa andare oltre.",
+    "Dai valore al tuo tempo.",
+    "Ogni giorno è una nuova opportunità.",
+    "Per ottenere risultati serve coraggio.",
+    "Se puoi sognarlo, puoi farlo.",
+    "La motivazione nasce dall'azione.",
+    "Non smettere di migliorarti.",
+    "Trasforma gli ostacoli in opportunità.",
+    "Non confrontarti con gli altri.",
+    "Sii paziente, ma non passivo.",
+    "La forza cresce nei momenti difficili.",
+    "Credi fortemente nei tuoi obiettivi.",
+    "La disciplina costruisce la libertà.",
+    "Cerca il progresso, non la perfezione.",
+    "Sorridi alle sfide.",
+    "Fai oggi qualcosa per il tuo futuro.",
+    "Ogni sacrificio ha un valore.",
+    "Abbi fiducia in te stesso.",
+    "Chi non prova non ottiene.",
+    "Dai il massimo, sempre.",
+    "La vita premia chi persiste.",
+    "Nessun ostacolo è insuperabile.",
+    "Le piccole abitudini formano grandi risultati.",
+    "Inizia con ciò che hai.",
+    "Non aver paura di cambiare.",
+    "Ogni giorno puoi ricominciare.",
+    "Punta alla versione migliore di te.",
+    "Lavora duro in silenzio.",
+    "Tieni la mente aperta.",
+    "Fai ciò che ti fa crescere.",
+    "La tua energia attira risultati.",
+    "Non mollare proprio ora.",
+    "Sii forte, anche quando è difficile.",
+    "Le grandi vittorie richiedono grandi sacrifici.",
+    "Concentrati su ciò che conta.",
+    "Non rimandare: inizia.",
+    "L’autodisciplina è il vero superpotere.",
+    "Non sottovalutare il tuo potenziale.",
+    "Cadi sette volte, rialzati otto.",
+    "Scegli pensieri che ti potenziano.",
+    "Allenati a pensare positivo.",
+    "Ogni giorno è un’occasione per crescere.",
+    "Metti il cuore in ciò che fai.",
+    "Dai sempre il meglio di te.",
+    "Continua finché non diventa facile.",
+    "Rendi orgoglioso il tuo futuro te stesso.",
+    "Non accontentarti.",
+    "Mantieni la rotta.",
+    "La disciplina porta lontano.",
+    "Meriti ciò per cui lavori.",
+    "Non temere i cambiamenti.",
+    "Rimani concentrato.",
+    "Sii il tuo principale alleato.",
+    "La motivazione arriva facendo.",
+    "Non chiederti se è possibile: rendilo possibile.",
+    "Crea opportunità.",
+    "Anche il percorso più lungo inizia dal primo passo.",
+    "Circondati di positività.",
+    "Vinci la battaglia nella mente.",
+    "Trasforma i 'non posso' in 'posso'.",
+    "Sii costante con te stesso.",
+    "Le sfide fanno crescere.",
+    "Lavora in silenzio, lascia parlare i risultati.",
+    "Ogni mattina è una rinascita.",
+    "Non guardare indietro troppo a lungo.",
+    "Valorizza ogni piccolo progresso.",
+    "I limiti sono spesso illusioni.",
+    "Credi nel processo.",
+    "Sii resiliente.",
+    "Non avere paura di fallire.",
+    "Chi persevera vince.",
+    "La crescita richiede coraggio.",
+    "Segui i tuoi valori.",
+    "Agisci senza aspettare l’occasione perfetta.",
+    "Accetta ciò che non puoi cambiare, migliora ciò che puoi.",
+    "Fai spazio alla tua versione migliore.",
+    "Non perdere mai la speranza.",
+    "La determinazione apre porte.",
+    "Tu puoi fare molto più di ciò che pensi."
+];
+
+// Genera 100 frasi casuali
+function generaFrasi() {
+    const container = document.getElementById("container");
+
+    for (let i = 0; i < 100; i++) {
+        const indice = Math.floor(Math.random() * frasi.length);
+        const div = document.createElement("div");
+        div.className = "phrase";
+        div.textContent = (i + 1) + ". " + frasi[indice];
+        container.appendChild(div);
+    }
+}
+
+generaFrasi();
+</script>
+
+</body>
+</html>
