@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>100 Versi Biblici Ispirativi</title>
+    <title>Versi Biblici Ispirativi (Parafrasi)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@
             padding: 10px;
             margin: 8px 0;
             border-left: 4px solid #5a8dee;
+            font-size: 18px;
         }
 
         button {
@@ -38,9 +39,9 @@
 </head>
 <body>
 
-<h1>100 Versi Biblici Ispirativi (Parafrasi)</h1>
+<h1>Versi Biblici Ispirativi (Parafrasi)</h1>
 
-<button onclick="generaFrasi()">Genera Nuove Frasi</button>
+<button onclick="generaFrasi()">Genera Nuova Frase</button>
 
 <div id="container"></div>
 
@@ -112,7 +113,7 @@ const frasi = [
     "Il Signore ti dà un futuro pieno di speranza.",
     "Dio ti consola come una madre consola il suo bambino.",
     "Il Signore conosce per nome chi gli appartiene.",
-    "Dio guarisce le ferite del cuore.",
+    "Dio guarisce les ferite del cuore.",
     "Il Signore ti dà forza quando sei stanco.",
     "Dio è presente anche quando sembra silenzioso.",
     "Il Signore ti insegna la via in cui devi camminare.",
@@ -150,13 +151,11 @@ function generaFrasi() {
     const container = document.getElementById("container");
     container.innerHTML = ""; // pulisce il contenuto precedente
 
-    for (let i = 0; i < 100; i++) {
-        const indice = Math.floor(Math.random() * frasi.length);
-        const div = document.createElement("div");
-        div.className = "phrase";
-        div.textContent = (i + 1) + ". " + frasi[indice];
-        container.appendChild(div);
-    }
+    const indice = Math.floor(Math.random() * frasi.length);
+    const div = document.createElement("div");
+    div.className = "phrase";
+    div.textContent = frasi[indice];
+    container.appendChild(div);
 }
 </script>
 
