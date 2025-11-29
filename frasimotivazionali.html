@@ -2,13 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Generatore Frasi Motivazionali</title>
+<title>EGAD - Generatore Frasi Motivazionali</title>
 <style>
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 40px;
   background: #f0f0f0;
+}
+
+h1 {
+  font-size: 40px;
+  color: #04AA6D;
+}
+
+#descrizione {
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto 40px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
 }
 
 #frase {
@@ -34,15 +49,45 @@ button {
 button:hover {
   background-color: #028e5b;
 }
+
+/* 🔽 NEW: stile per il link TORNA ALLA HOME */
+#tornaHome {
+  display: inline-block;
+  margin-top: 80px; /* Sposta il link più in basso */
+  font-size: 20px;
+  color: #04AA6D;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#tornaHome:hover {
+  color: #028e5b;
+}
 </style>
 </head>
 <body>
+
+<h1>EGAD</h1>
+
+<div id="descrizione">
+  <p><strong>EGAD</strong> è una piccola associazione nata per promuovere positività, motivazione e crescita personale attraverso strumenti digitali semplici e creativi.
+  La missione del gruppo è trasmettere energia e ispirazione per aiutare le persone ad affrontare al meglio ogni giornata.</p>
+
+  <p>L’associazione è composta da quattro membri fondatori:<br>
+  <strong>Enrico Fallace, Gabriele Isoldi, Antonio Occhetti e Davide Scaglione.</strong></p>
+
+  <p>Questa pagina fa parte del progetto EGAD dedicato alla condivisione di frasi motivazionali,
+  pensate per dare forza, stimolo e sorriso a chi ne ha bisogno.</p>
+</div>
 
 <h2>Generatore di Frasi Motivazionali</h2>
 
 <div id="frase">Clicca il pulsante per generare una frase!</div>
 
 <button onclick="generaFrase()">Genera Frase</button>
+
+<!-- 🔽 NEW: link TORNA ALLA HOME -->
+<a href="menu.html" id="tornaHome">TORNA ALLA HOME</a>
 
 <script>
 const frasi = [
@@ -152,21 +197,5 @@ function generaFrase() {
 }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
- <a href="https://scaglions.github.io/STA/MenùGruppo.html" class="active">TORNA ALLA HOME</a>
 </body>
 </html>
-
